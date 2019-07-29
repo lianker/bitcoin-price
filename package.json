@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/*.js",
-    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require @babel/register --reporter nyan",
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require @babel/register --require @babel/polyfill",
     "test:tdd": "npm run test -- --watch",
     "clear": "rimraf bin",
     "build": "npm run clear && ./node_modules/.bin/babel --out-dir bin src",
@@ -38,9 +38,11 @@
     "sinon-chai": "^3.3.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "ora": "^3.4.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7"
   }
 }
