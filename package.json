@@ -5,12 +5,20 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/*.js",
-    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require @babel/register",
-    "test:tdd": "npm run test -- --watch"
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require @babel/register --reporter nyan",
+    "test:tdd": "npm run test -- --watch",
+    "clear": "rimraf bin",
+    "build": "npm run clear && ./node_modules/.bin/babel --out-dir bin src",
+    "build:watch": "npm run build -- --watch"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "bitcoin-price": "./bin/main.js"
   },
   "author": "Lianker Lopes <lianker.dev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.4",
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
@@ -23,9 +31,16 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^6.1.4",
+    "nock": "^10.0.6",
     "node-fetch": "^2.6.0",
     "prettier": "^1.18.2",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "ora": "^3.4.0",
+    "request": "^2.88.0"
   }
 }
